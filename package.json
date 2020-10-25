@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-http-contact-sensor",
+  "name": "homebridge-http-next-contact-sensor",
   "version": "0.1.0",
   "description": "Display current door state",
   "license": "ISC",
