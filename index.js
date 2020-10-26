@@ -44,7 +44,7 @@ function HTTP_CONTACT(log, config) {
     }
 
     this.statusCache = new Cache(config.statusCache, 0);
-    this.statusPattern = /(([01]$))/;
+    this.statusPattern = /((opened|closed)\\n)/;
     try {
         if (config.statusPattern)
             this.statusPattern = configParser.parsePattern(config.statusPattern);
@@ -95,7 +95,6 @@ HTTP_CONTACT.prototype = {
         const informationService = new Service.AccessoryInformation();
 
         informationService
-            .setCharacteristic(Characteristic.Manufacturer, "Bastian Slodowski")
             .setCharacteristic(Characteristic.Model, "HTTP Contact Sensor")
             .setCharacteristic(Characteristic.SerialNumber, "CS01")
             .setCharacteristic(Characteristic.FirmwareRevision, packageJSON.version);
@@ -143,9 +142,16 @@ HTTP_CONTACT.prototype = {
                 let status;
                 try {
                     status = utils.extractValueFromPattern(this.statusPattern, body, this.patternGroupToExtract);
-                    
+                    if (status == "opened") {
+                        status = "1";
+                    } else (status == "closed"){
+                        status = "0";
+                    } else {
+                        this.log("getState() did not find opened or closed in body: " + body);
+                        return;
+                    }
                 } catch (error) {
-                    this.log("getState() error occurred while extracting temperature from body: " + error.message);
+                    this.log("getState() error occurred while extracting state from body: " + error.message);
                     callback(new Error("pattern error"));
                     return;
                 }
