@@ -1,7 +1,4 @@
-# homebridge-http-temperature-sensor Plugin
-
-This [Homebridge](https://github.com/nfarina/homebridge) plugin can be used integrate your temperature sensor which has a 
-http api into HomeKit.
+# homebridge-http-contact-sensor Plugin
 
 ## Installation
 
@@ -10,13 +7,13 @@ instructions.
 Then run the following command to install `homebridge-http-temperature-sensor`
 
 ```
-sudo npm install -g homebridge-http-temperature-sensor
+sudo npm install -g homebridge-http-contact-sensor
 ```
 
-## Updating the temperature in HomeKit
+## Updating the contact in HomeKit
 
-The _'CurrentTemperature'_ characteristic has the permission to `notify` the HomeKit controller of state 
-changes. `homebridge-http-temperature-sensor` supports two concepts to send temperature changes to HomeKit.
+The _'ContactSensor'_ characteristic has the permission to `notify` the HomeKit controller of state 
+changes. `homebridge-http-contact-sensor` supports two concepts to send temperature changes to HomeKit.
 
 ### The 'pull' way:
 
