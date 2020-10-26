@@ -44,7 +44,7 @@ function HTTP_CONTACT(log, config) {
     }
 
     this.statusCache = new Cache(config.statusCache, 0);
-    this.statusPattern = /((opened|closed)\\n)/;
+    this.statusPattern = /((opened|closed))/;
     try {
         if (config.statusPattern)
             this.statusPattern = configParser.parsePattern(config.statusPattern);
