@@ -144,7 +144,7 @@ HTTP_CONTACT.prototype = {
                     status = utils.extractValueFromPattern(this.statusPattern, body, this.patternGroupToExtract);
                     if (status == "opened") {
                         status = "1";
-                    } else (status == "closed"){
+                    } else if (status == "closed") {
                         status = "0";
                     } else {
                         this.log("getState() did not find opened or closed in body: " + body);
